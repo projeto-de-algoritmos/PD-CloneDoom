@@ -18,9 +18,9 @@ Em resumo, combinamos a emoção e a jogabilidade do Doom com as técnicas de pr
 
 ## Screenshots
 
-![](screenshot/sc1.png)
-![](screenshot/sc2.png)
-![](screenshot/sc3.png)
+![](screenshots/sc1.png)
+![](screenshots/sc2.png)
+![](screenshots/sc3.png)
 
 ## Instalação 
 **Linguagem**: Python<br>
