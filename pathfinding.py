@@ -7,9 +7,13 @@ class PathFinding:
         self.map = game.map.mini_map
         self.ways = [-1, 0], [0, -1], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]
         self.graph = {}
+        self.cache = {}
         self.get_graph()
 
     def get_path(self, start, goal):
+        if start in self.cache and goal in self.cache[start]:
+            return self.cache[start][goal]
+
         self.visited = self.bfs(start, goal, self.graph)
         path = [goal]
         step = self.visited.get(goal, start)
@@ -17,6 +21,11 @@ class PathFinding:
         while step and step != start:
             path.append(step)
             step = self.visited[step]
+
+        if start not in self.cache:
+            self.cache[start] = {}
+        self.cache[start][goal] = path[-1]
+
         return path[-1]
 
     def bfs(self, start, goal, graph):
@@ -33,6 +42,7 @@ class PathFinding:
                 if next_node not in visited and next_node not in self.game.object_handler.npc_positions:
                     queue.append(next_node)
                     visited[next_node] = cur_node
+
         return visited
 
     def get_next_nodes(self, x, y):
